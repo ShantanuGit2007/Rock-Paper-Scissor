@@ -1,8 +1,6 @@
 import streamlit as st
 import random
 import time
-#Logo
-st.logo("logo.png", size="large", icon_image=None, link=None)
 
 #Header
 st.markdown(
