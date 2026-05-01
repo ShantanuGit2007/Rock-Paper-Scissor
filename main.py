@@ -95,6 +95,8 @@ if user_choice:
         st.session_state.user_score+=1
         user_and_computer_choice()
         st.balloons()
+else:
+    winner.markdown(":yellow[**Tap the buttons to begin your fun 🤩**]")
 
 #Scoreboard
 st.table(
@@ -106,4 +108,4 @@ st.table(
 )
 
 #Footer
-st.markdown("Built With ❤️ and fueled by ☕️",text_alignment="center")
+st.markdown("Built with ❤️ and fueled by ☕️",text_alignment="center")
