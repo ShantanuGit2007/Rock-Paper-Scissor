@@ -3,12 +3,7 @@ import random
 import time
 
 #Header
-st.markdown(
-    '''
-    <center><h4 style="font-family: 'Source Sans', sans-serif; color: red;"><b>Rock-Paper-Scissor</b></h4></center>
-    ''',
-    unsafe_allow_html=True
-)
+st.header("Rock-Paper-Scissor",text_alignment="center")
 
 #variable to pick computer choice
 computer_choice=random.randint(1,3)
@@ -36,19 +31,19 @@ user_choice=None
 #All buttons
 col1,col2,col3=st.columns([1,2,1])
 with col2:
-    if st.button('Rock   ',key=1, width=600, icon='🪨'):
+    if st.button('**Rock**',key=1, width=600, icon='🪨'):
             user_choice=1
-    if st.button('Paper  ',key=2, width=600, icon='📄'):
+    if st.button('**Paper**',key=2, width=600, icon='📄'):
             user_choice=2
-    if st.button('Scissor',key=3,width=600, icon='✂️'):
+    if st.button('**Scissor**',key=3,width=600, icon='✂️'):
             user_choice=3
-    if st.button('Rematch',key=4,width=600, icon='🔄'):
+    if st.button('**Restart**',key=4,width=600, icon='🔄'):
             st.session_state.clear()
             st.rerun()
 
 #Delay effect
 if user_choice in [1,2,3]:
-    winner.title("Deciding...")
+    winner.subheader("Deciding...")
     time.sleep(2)
 
 #User & computer score
@@ -59,70 +54,55 @@ if 'computer_score' not in st.session_state:
 
 #fuction for priview user and computer choice
 def user_and_computer_choice():
-        user_choice_priview.write(f'Your Choice: {dict_for_choice[user_choice]}')
-        computer_choice_priview.write(f'Computer choice: {dict_for_choice[computer_choice]}')
+        user_choice_priview.markdown(f':blue-background[**Your Choice**] {dict_for_choice[user_choice]}',text_alignment="center")
+        computer_choice_priview.markdown(f':blue-background[**Computer Choice**] {dict_for_choice[computer_choice]}',text_alignment="center")
 #Game logic
 if user_choice:
     if user_choice==computer_choice:
-        winner.title('Match Draw!')
+        winner.subheader('Match Draw! 🙃',text_alignment="center")
         user_and_computer_choice()
 
     elif user_choice==1 and computer_choice==2:
-        winner.title('Sorry! Computer Won')
+        winner.subheader(':red[Sorry! Computer Win ☹️]',text_alignment="center")
         st.session_state.computer_score+=1
         user_and_computer_choice()
         
     elif  user_choice==1 and computer_choice==3:
-        winner.title("Hurreh! You Win")
+        winner.subheader(':green[Hurreh! You Win] 😍',text_alignment="center")
         st.session_state.user_score+=1
         user_and_computer_choice()
         st.balloons()
 
     elif user_choice==2 and computer_choice==3:
-        winner.title('Sorry! Computer Won')
+        winner.subheader(':red[Sorry! Computer Win ☹️]',text_alignment="center")
         st.session_state.computer_score+=1
         user_and_computer_choice()
 
     elif user_choice==2 and computer_choice==1:
-        winner.title("Hurreh! You Win")
+        winner.subheader(':green[Hurreh! You Win] 😍',text_alignment="center")
         st.session_state.user_score+=1
         user_and_computer_choice()
         st.balloons()
 
     elif user_choice==3 and computer_choice==1:
-        winner.title('Sorry! Computer Won')
+        winner.subheader(':red[Sorry! Computer Win ☹️]',text_alignment="center")
         st.session_state.computer_score+=1
         user_and_computer_choice()
 
     elif user_choice==3 and computer_choice==2:
-        winner.title("Hurreh! You Win")
+        winner.subheader(':green[Hurreh! You Win] 😍',text_alignment="center")
         st.session_state.user_score+=1
         user_and_computer_choice()
         st.balloons()
 
 #Scoreboard
-with st.container(border=True):
-    coll1,coll2=st.columns([1,1])
-    with coll1:
-        st.markdown(
-            '''
-            <h3><u>Your score</u></h3>
-            ''',
-            unsafe_allow_html=True
-        )
-        st.subheader(st.session_state.user_score)
-
-    with coll2:
-        st.markdown(
-            '''
-            <h3><u>Computer Score</u></h3>
-            ''',
-            unsafe_allow_html=True
-        )
-        st.subheader(st.session_state.computer_score)
+st.table(
+    {
+        "**You**":[st.session_state.user_score],
+        "**Computer**":[st.session_state.computer_score],
+    },
+    hide_index=True
+)
 
 #Footer
-st.markdown('''
-<center><p> "Built With ❤️ and fueled by ☕️" </p></center>
-''',
-unsafe_allow_html=True)
+st.markdown("Built With ❤️ and fueled by ☕️",text_alignment="center")
