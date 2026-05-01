@@ -1,7 +1,8 @@
 import streamlit as st
 import random
 import time
-
+#Logo
+st.logo("Logo.png",size="large")
 #Header
 st.header("Rock-Paper-Scissor",text_alignment="center")
 
