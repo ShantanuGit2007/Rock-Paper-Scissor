@@ -106,6 +106,22 @@ st.table(
     },
     hide_index=True
 )
+expander = st.expander("How to play ? 🤔 ")
+instructions = """
+This game is played between the player and the computer.
 
+How to Play:
+1. The player selects one option: Rock, Paper, or Scissors.
+2. The computer automatically generates its choice.
+3. Both choices are revealed, and the result is determined.
+Rules:
+- Rock defeats Scissors
+- Scissors defeats Paper
+- Paper defeats Rock
+- If both choices are the same, the round is a draw
+
+The result of each round is displayed, and scores can be tracked over multiple rounds.
+"""
+expander.write(instructions)
 #Footer
 st.markdown("Built with ❤️ and fueled by ☕️",text_alignment="center")
